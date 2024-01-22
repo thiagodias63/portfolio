@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BublesEffect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+        span {
+            position: absolute;
+            background: url('https://www.svgrepo.com/show/30553/bubbles.svg');
+            background-size: cover;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: roseTheBubble 4s linear infinite;
+        }
+        @keyframes roseTheBubble {
+            0% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -1000%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <script>
+            // add a debounce to not append elements too close to each other
+            document.addEventListener('mousemove', (e) => {
+                const body = document.querySelector('body');
+                const bubbles = document.createElement('span');
+                bubbles.style.left = `${e.offsetX}px`;
+                bubbles.style.top = `${e.offsetY}px`;                
+                const size = `${20 + (Math.random() * 100)}px`;
+                bubbles.style.width = size;
+                bubbles.style.height = size;
+                body.appendChild(bubbles);
+
+                setTimeout(() => {
+                    bubbles.remove();
+                }, 4000)
+            })
+        </script>
+    </body>
+</body>
+</html>

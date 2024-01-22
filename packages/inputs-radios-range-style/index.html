@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InputsRadiosRangeStyle</title>
+    <style>
+        :root {
+            --clr-accent: #0aff11;
+        }
+
+        input {
+            accent-color: var(--clr-accent);
+        }
+    </style>
+</head>
+<body>
+    <fieldset class="checkboxes">
+        <legend>Checkbox examples</legend>
+        <label>Checkbox one<input type="checkbox" checked></label>
+        <label>Checkbox two<input type="checkbox" checked></label>
+        <label>Checkbox three<input type="checkbox"></label>
+        <label>Checkbox four<input type="checkbox"></label>
+    </fieldset>
+
+    <fieldset class="radio-buttons">
+        <legend>Radio button example</legend>
+        <label>Radio Buttons<input type="radio" name="color-example" checked></label>
+        <label>Radio two<input type="radio" name="color-example"></label>
+        <label>Radio three<input type="radio" name="color-example"></label>
+        <label>Radio four<input type="radio" name="color-example"></label>
+    </fieldset>
+
+    <fieldset class="range">
+        <legend>Range slider</legend>
+        <input type="range">
+    </fieldset>
+</body>
+</html>

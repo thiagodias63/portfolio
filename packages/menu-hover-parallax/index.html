@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenuHoverParallax</title>
+    <style>
+        * {
+            --smoth-transition: opacity 800ms ease,
+                background-size 800ms ease,
+                background-position 800ms ease;
+            --dots-background: radial-gradient(
+                rgba(255, 255, 255, 0.1) 9%,
+                transparent 9%
+            );
+        }
+        body {
+            background-color: rgb(20, 20, 20);
+            margin: 0;
+        }
+        #menu {
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+        #menu-items {
+            position: relative;
+            z-index: 100;
+            margin-left: clamp(4rem, 20vw, 48rem);
+        }
+        #menu[data-active-index="0"] > #menu-background-pattern {
+            background-position: 0% -25%;
+        }
+        #menu[data-active-index="1"] > #menu-background-pattern {
+            background-position: 0% -50%;
+        }
+        #menu[data-active-index="2"] > #menu-background-pattern {
+            background-position: 0% -75%;
+        }
+        #menu[data-active-index="3"] > #menu-background-pattern {
+            background-position: 0% -100%;
+        }
+        #menu[data-active-index="0"] > #menu-background-image {
+            background-position: center 45%;
+        }
+        #menu[data-active-index="1"] > #menu-background-image {
+            background-position: center 50%;
+        }
+        #menu[data-active-index="2"] > #menu-background-image {
+            background-position: center 55%;
+        }
+        #menu[data-active-index="3"] > #menu-background-image {
+            background-position: center 60%;
+        }
+        #menu-background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            z-index: 10;
+            background-image: var(--dots-background);
+            background-position: 0% 0%;
+            background-size: 12vmin 12vmin;
+            transition: var(--smoth-transition);
+        }
+        #menu-background-image {
+            position: absolute;
+            left: 0;
+            top: 0;            
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: url('https://plus.unsplash.com/premium_photo-1674582745423-9e5d7dbb13ef?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center 40%;
+            background-size: 110vmax;
+            opacity: 0.15;            
+            transition: var(--smoth-transition);
+        }
+        #menu-items:hover ~ #menu-background-pattern {
+            background-size: 11vmin 11vmin;
+            opacity: 0.5;
+        }
+        #menu-items:hover ~ #menu-background-image {
+            background-size: 110vmax;
+            opacity: 0.1;
+        }
+        #menu-items:hover > .menu-item {
+            opacity: 0.3;
+        }
+        #menu-items:hover > .menu-item:hover {
+            opacity: 1;
+        }
+        .menu-item {
+            display: block;
+            font-family: serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            padding-block: clamp(0.25rem, 0.5vw, 1rem);
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: opacity 400ms ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <div id="menu-items">
+            <div class="menu-item">Home</div>
+            <div class="menu-item">Services</div>
+            <div class="menu-item">About</div>
+            <div class="menu-item">Contact Us</div>
+        </div>
+        <div id="menu-background-pattern"></div>
+        <div id="menu-background-image"></div>
+    </div>
+    <script>
+        const menu = document.getElementById("menu");
+        document.querySelectorAll('.menu-item').forEach((menuItem, index) => {
+            menuItem.onmouseover = () => {
+                menu.dataset.activeIndex = index;
+            }
+        });
+    </script>
+</body>
+</html>
