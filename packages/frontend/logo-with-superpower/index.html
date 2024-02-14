@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo With Superpower</title>
+    <style>
+      body {
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #logo {
+        position: relative;
+        width: 300px;
+        aspect-ratio: 1000 / 556;
+        user-select: none;
+      }
+
+      #logo > img {
+        width: 100%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="logo">
+      <img
+        src="assets/github-4.svg"
+        draggable="false"
+      />
+      <img
+        src="assets/github-3.svg"
+        draggable="false"
+      />
+      <img
+        src="assets/github-2.svg"
+        draggable="false"
+      />
+      <img
+        src="assets/github-1.svg"
+        draggable="false"
+      />
+      <img
+        src="assets/github-1.svg"
+        draggable="false"
+      />
+    </div>
+
+    <script>
+      const logo = document.getElementById("logo"),
+        images = logo.querySelectorAll("img");
+
+      const getActive = () => document.body.dataset.active === "true",
+        setActiveTo = (active) => (document.body.dataset.active = active);
+
+      const shift = (image, index, rangeX, rangeY) => {
+        const active = getActive();
+
+        const translationIntensity = active ? 24 : 4,
+          maxTranslation = translationIntensity * (index + 1),
+          currentTranslation = `${maxTranslation * rangeX}% ${
+            maxTranslation * rangeY
+          }%`;
+
+        const scale = active ? 1 + index * 0.4 : 1;
+
+        image.animate(
+          {
+            translate: currentTranslation,
+            scale,
+          },
+          { duration: 750, fill: "forwards", easing: "ease" }
+        );
+      };
+
+      const shiftAll = (images, rangeX, rangeY) =>
+        images.forEach((image, index) => shift(image, index, rangeX, rangeY));
+
+      const shiftLogo = (e, images) => {
+        const rect = logo.getBoundingClientRect(),
+          radius = 1000;
+
+        const centerX = rect.left + rect.width / 2,
+          centerY = rect.top + rect.height / 2;
+
+        const rangeX = (e.clientX - centerX) / radius,
+          rangeY = (e.clientY - centerY) / radius;
+
+        shiftAll(images, rangeX, rangeY);
+      };
+
+      const resetLogo = () => {
+        setActiveTo(false);
+        shiftAll(images, 0.4, -0.7);
+      };
+
+      window.onmousemove = (e) => shiftLogo(e, images);
+
+      document.body.onmouseleave = () => {
+        if (!getActive()) resetLogo();
+      };
+
+      window.onmousedown = (e) => {
+        setActiveTo(true);
+        shiftLogo(e, images);
+      };
+
+      window.onmouseup = (e) => resetLogo();
+
+      resetLogo();
+    </script>
+  </body>
+</html>
