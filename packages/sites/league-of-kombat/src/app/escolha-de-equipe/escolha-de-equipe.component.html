@@ -1,0 +1,23 @@
+<div class="card-swiper">
+  <div class="card-groups">
+    <ng-container *ngFor="let equipe of equipes; let equipeIndex = index">
+      <div class="card-group" [attr.data-index]="equipeIndex" [attr.data-status]="equipe.status">
+        <ng-container *ngFor="let membroDaEquipe of equipe.membros; let membroIndex = index">
+          <div [imagemMembro]="membroDaEquipe.imagem" class="little-card card"></div>
+          <div [imagemMembro]="membroDaEquipe.imagem" [membroIndex]="membroIndex" class="big-card card"></div>
+        </ng-container>
+        <!-- <div class="little-card card"></div>
+        <div [ngStyle]="{'background-image': 'url(' + image + ')'}" class="big-card card"></div>
+        <div class="little-card card"></div>
+        <div [ngStyle]="{'background-image': 'url(' + image + ')'}" class="big-card card"></div>
+        <div class="little-card card"></div>
+        <div [ngStyle]="{'background-image': 'url(' + image + ')'}" class="big-card card"></div> -->
+      </div>
+    </ng-container>
+  </div>
+  <div class="card-swiper-buttons">
+    <button id="hate-button" (click)="previusTeam()"><</button>
+    <button id="hate-button" (click)="selectTeam()">Enter</button>
+    <button id="love-button" (click)="nextTeam()">></button>
+  </div>
+</div>

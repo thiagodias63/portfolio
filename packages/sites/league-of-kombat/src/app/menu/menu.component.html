@@ -1,0 +1,9 @@
+<div id="menu" #menuContainer>
+  <div id="menu-items">
+    <ng-container *ngFor="let menuOption of menuOptions; let index = index">
+      <div (mouseover)="onMouseHover(index)" class="menu-item" [routerLink]="menuOption.href">{{ menuOption.name }}</div>
+    </ng-container>
+  </div>
+  <div id="menu-background-pattern"></div>
+  <div id="menu-background-image"></div>
+</div>

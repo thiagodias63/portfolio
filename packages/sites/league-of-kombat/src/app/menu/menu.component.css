@@ -1,0 +1,80 @@
+:host {
+    --smoth-transition: opacity 800ms ease,
+        background-size 800ms ease,
+        background-position 800ms ease;
+    --dots-background: radial-gradient(
+        rgba(255, 255, 255, 0.1) 9%,
+        transparent 9%
+    );
+
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+#menu-items {
+    position: relative;
+    z-index: 100;
+    margin-left: clamp(4rem, 20vw, 48rem);
+}
+#menu[data-active-index="0"] > #menu-background-pattern {
+    background-position: 0% -50%;
+}
+#menu[data-active-index="1"] > #menu-background-pattern {
+    background-position: 0% -100%;
+}
+#menu[data-active-index="0"] > #menu-background-image {
+    background-position: center 45%;
+}
+#menu[data-active-index="1"] > #menu-background-image {
+    background-position: center 60%;
+}
+#menu-background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    background-image: var(--dots-background);
+    background-position: 0% 0%;
+    background-size: 12vmin 12vmin;
+    transition: var(--smoth-transition);
+}
+#menu-background-image {
+    position: absolute;
+    left: 0;
+    top: 0;            
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('/assets/menu-wallpaper.jpg');
+    background-position: center 40%;
+    background-size: 110vmax;
+    opacity: 0.15;            
+    transition: var(--smoth-transition);
+}
+#menu-items:hover ~ #menu-background-pattern {
+    background-size: 11vmin 11vmin;
+    opacity: 0.5;
+}
+#menu-items:hover ~ #menu-background-image {
+    background-size: 110vmax;
+    opacity: 0.1;
+}
+#menu-items:hover > .menu-item {
+    opacity: 0.3;
+}
+#menu-items:hover > .menu-item:hover {
+    opacity: 1;
+}
+.menu-item {
+    display: block;
+    font-family: serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    padding-block: clamp(0.25rem, 0.5vw, 1rem);
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: opacity 400ms ease;
+}
