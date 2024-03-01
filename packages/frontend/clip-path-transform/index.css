@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.profile-photo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background-image: url('orianna.jpg');
+    background-attachment: fixed;
+    clip-path: circle(150px at center);
+}
+.description {
+    position: relative;
+    margin-top: 200vh;
+    margin-top: 200dvh;
+    background-color: #fff;
+    padding: 100px;
+}
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+}
+h1 {
+    position: relative;
+    top: 150px;
+    z-index: 1;
+    font-size: 3rem;
+    text-align: center;
+}
